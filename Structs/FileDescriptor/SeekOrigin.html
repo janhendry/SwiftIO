@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>InterruptMode Enumeration Reference</title>
+    <title>SeekOrigin Enumeration Reference</title>
     <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Enum/InterruptMode" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Enum/SeekOrigin" class="dashAnchor"></a>
 
-    <a title="InterruptMode Enumeration Reference"></a>
+    <a title="SeekOrigin Enumeration Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../../index.html">SwiftIO Reference</a>
       <img class="carat" src="../../img/carat.png" />
-      InterruptMode Enumeration Reference
+      SeekOrigin Enumeration Reference
     </p>
 
     <div class="content-wrapper">
@@ -168,15 +168,15 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>InterruptMode</h1>
+            <h1>SeekOrigin</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">InterruptMode</span> <span class="p">:</span> <span class="kt">UInt8</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SeekOrigin</span> <span class="p">:</span> <span class="kt">Int32</span></code></pre>
 
                 </div>
               </div>
-            <p>The interrupt mode determines the edge to raise the interrupt: rising, falling or both edges. A rising edge is the transition of a digital input signal from high to low and a falling edge is from low to high.</p>
+            <p>Options for specifying what a file descriptor&rsquo;s offset is relative to.</p>
 
           </div>
         </section>
@@ -188,9 +188,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7SwiftIO9DigitalInC13InterruptModeO6risingyA2EmF"></a>
-                    <a name="//apple_ref/swift/Element/rising" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftIO9DigitalInC13InterruptModeO6risingyA2EmF">rising</a>
+                    <a name="/s:7SwiftIO14FileDescriptorV10SeekOriginO5startyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/start" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftIO14FileDescriptorV10SeekOriginO5startyA2EmF">start</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -205,7 +205,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">rising</span> <span class="o">=</span> <span class="mi">1</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
 
                         </div>
                       </div>
@@ -215,9 +215,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7SwiftIO9DigitalInC13InterruptModeO7fallingyA2EmF"></a>
-                    <a name="//apple_ref/swift/Element/falling" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftIO9DigitalInC13InterruptModeO7fallingyA2EmF">falling</a>
+                    <a name="/s:7SwiftIO14FileDescriptorV10SeekOriginO7currentyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/current" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftIO14FileDescriptorV10SeekOriginO7currentyA2EmF">current</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -232,7 +232,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">falling</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">current</span></code></pre>
 
                         </div>
                       </div>
@@ -242,9 +242,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7SwiftIO9DigitalInC13InterruptModeO8bothEdgeyA2EmF"></a>
-                    <a name="//apple_ref/swift/Element/bothEdge" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftIO9DigitalInC13InterruptModeO8bothEdgeyA2EmF">bothEdge</a>
+                    <a name="/s:7SwiftIO14FileDescriptorV10SeekOriginO3endyA2EmF"></a>
+                    <a name="//apple_ref/swift/Element/end" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftIO14FileDescriptorV10SeekOriginO3endyA2EmF">end</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -259,7 +259,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">bothEdge</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">end</span></code></pre>
 
                         </div>
                       </div>

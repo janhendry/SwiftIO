@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Protocols  Reference</title>
+    <title>Structures  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Section/Protocols" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Section/Structures" class="dashAnchor"></a>
 
-    <a title="Protocols  Reference"></a>
+    <a title="Structures  Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="index.html">SwiftIO Reference</a>
       <img class="carat" src="img/carat.png" />
-      Protocols  Reference
+      Structures  Reference
     </p>
 
     <div class="content-wrapper">
@@ -168,8 +168,8 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>Protocols</h1>
-            <p>The following protocols are available globally.</p>
+            <h1>Structures</h1>
+            <p>The following structures are available globally.</p>
 
           </div>
         </section>
@@ -181,9 +181,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7SwiftIO6IdNameP"></a>
-                    <a name="//apple_ref/swift/Protocol/IdName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftIO6IdNameP">IdName</a>
+                    <a name="/s:7SwiftIO14FileDescriptorV"></a>
+                    <a name="//apple_ref/swift/Struct/FileDescriptor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftIO14FileDescriptorV">FileDescriptor</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -191,15 +191,36 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The FileDescriptor struct is used to perform low-level file operations.</p>
+<h3 id='example-open-and-read-a-ascii-file' class='heading'>Example: Open and read a ASCII file</h3>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">SwiftIO</span>
 
-                        <a href="Protocols/IdName.html" class="slightly-smaller">See more</a>
+<span class="c1">// Open the file located in "/subDir/hello.txt"</span>
+<span class="k">let</span> <span class="nv">file</span> <span class="o">=</span> <span class="kt">FileDescriptor</span><span class="o">.</span><span class="nf">open</span><span class="p">(</span><span class="s">"/SD:/subDir/hello.txt"</span><span class="p">)</span>
+
+<span class="c1">//Initialize a buffer to store the reading bytes.</span>
+<span class="k">var</span> <span class="nv">buffer</span> <span class="o">=</span> <span class="kt">UnsafeMutableRawBufferPointer</span><span class="o">.</span><span class="nf">allocate</span><span class="p">(</span><span class="nv">byteCount</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nv">alignment</span><span class="p">:</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="c1">// Read bytes into the buffer</span>
+<span class="n">file</span><span class="o">.</span><span class="nf">read</span><span class="p">(</span><span class="nv">into</span><span class="p">:</span> <span class="n">buffer</span><span class="p">)</span>
+
+<span class="c1">// Print the reding bytes.</span>
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..&lt;</span><span class="n">buffer</span><span class="o">.</span><span class="n">count</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">buffer</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="p">}</span>
+
+<span class="k">while</span> <span class="kc">true</span> <span class="p">{</span>
+    <span class="nf">sleep</span><span class="p">(</span><span class="nv">ms</span><span class="p">:</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+                        <a href="Structs/FileDescriptor.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">IdName</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">FileDescriptor</span></code></pre>
 
                         </div>
                       </div>

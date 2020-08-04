@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>UART Class Reference</title>
+    <title>FileDescriptor Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Class/UART" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Struct/FileDescriptor" class="dashAnchor"></a>
 
-    <a title="UART Class Reference"></a>
+    <a title="FileDescriptor Structure Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">SwiftIO Reference</a>
       <img class="carat" src="../img/carat.png" />
-      UART Class Reference
+      FileDescriptor Structure Reference
     </p>
 
     <div class="content-wrapper">
@@ -168,15 +168,36 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>UART</h1>
+            <h1>FileDescriptor</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">UART</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">FileDescriptor</span></code></pre>
 
                 </div>
               </div>
-            <p>UART is a two-wire serial communication protocol used to communicate with serial devices. The devices must agree on a common transmisson rate before communication.</p>
+            <p>The FileDescriptor struct is used to perform low-level file operations.</p>
+<h3 id='example-open-and-read-a-ascii-file' class='heading'>Example: Open and read a ASCII file</h3>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">SwiftIO</span>
+
+<span class="c1">// Open the file located in "/subDir/hello.txt"</span>
+<span class="k">let</span> <span class="nv">file</span> <span class="o">=</span> <span class="kt">FileDescriptor</span><span class="o">.</span><span class="nf">open</span><span class="p">(</span><span class="s">"/SD:/subDir/hello.txt"</span><span class="p">)</span>
+
+<span class="c1">//Initialize a buffer to store the reading bytes.</span>
+<span class="k">var</span> <span class="nv">buffer</span> <span class="o">=</span> <span class="kt">UnsafeMutableRawBufferPointer</span><span class="o">.</span><span class="nf">allocate</span><span class="p">(</span><span class="nv">byteCount</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nv">alignment</span><span class="p">:</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="c1">// Read bytes into the buffer</span>
+<span class="n">file</span><span class="o">.</span><span class="nf">read</span><span class="p">(</span><span class="nv">into</span><span class="p">:</span> <span class="n">buffer</span><span class="p">)</span>
+
+<span class="c1">// Print the reding bytes.</span>
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..&lt;</span><span class="n">buffer</span><span class="o">.</span><span class="n">count</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">buffer</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="p">}</span>
+
+<span class="k">while</span> <span class="kc">true</span> <span class="p">{</span>
+    <span class="nf">sleep</span><span class="p">(</span><span class="nv">ms</span><span class="p">:</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
 
           </div>
         </section>
@@ -188,9 +209,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7SwiftIO4UARTC_8baudRate8dataBits6parity04stopG016readBufferLengthAcA6IdName_p_SiAC04DataG0OAC6ParityOAC04StopG0OAC0kL0Otcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(_:baudRate:dataBits:parity:stopBits:readBufferLength:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftIO4UARTC_8baudRate8dataBits6parity04stopG016readBufferLengthAcA6IdName_p_SiAC04DataG0OAC6ParityOAC04StopG0OAC0kL0Otcfc">init(_:<wbr>baudRate:<wbr>dataBits:<wbr>parity:<wbr>stopBits:<wbr>readBufferLength:<wbr>)</a>
+                    <a name="/s:7SwiftIO14FileDescriptorV10SeekOriginO"></a>
+                    <a name="//apple_ref/swift/Enum/SeekOrigin" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftIO14FileDescriptorV10SeekOriginO">SeekOrigin</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -198,23 +219,47 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initialize an interface for UART communication.</p>
-<h3 id='usage-example' class='heading'>Usage Example</h3>
-<pre class="highlight swift"><code><span class="c1">// Initialize a UART interface UART0.</span>
-<span class="k">let</span> <span class="nv">uart</span> <span class="o">=</span> <span class="kt">UART</span><span class="p">(</span><span class="kt">Id</span><span class="o">.</span><span class="kt">UART0</span><span class="p">)</span>
-</code></pre>
+                        <p>Options for specifying what a file descriptor&rsquo;s offset is relative to.</p>
+
+                        <a href="../Structs/FileDescriptor/SeekOrigin.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SeekOrigin</span> <span class="p">:</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7SwiftIO14FileDescriptorV4openyACSSFZ"></a>
+                    <a name="//apple_ref/swift/Method/open(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftIO14FileDescriptorV4openyACSSFZ">open(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Open or creates, if does not exist, file.</p>
+<div class="aside aside-attention">
+    <p class="aside-title">Attention</p>
+    The root directory for the micro SD card is &ldquo;/SD:/&rdquo;
+
+</div>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">id</span><span class="p">:</span> <span class="kt"><a href="../Protocols/IdName.html">IdName</a></span><span class="p">,</span>
-            <span class="nv">baudRate</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">115200</span><span class="p">,</span>
-            <span class="nv">dataBits</span><span class="p">:</span> <span class="kt"><a href="../Classes/UART/DataBits.html">DataBits</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">eightBits</span><span class="p">,</span>
-            <span class="nv">parity</span><span class="p">:</span> <span class="kt"><a href="../Classes/UART/Parity.html">Parity</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">none</span><span class="p">,</span>
-            <span class="nv">stopBits</span><span class="p">:</span> <span class="kt"><a href="../Classes/UART/StopBits.html">StopBits</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">oneBit</span><span class="p">,</span>
-            <span class="nv">readBufferLength</span><span class="p">:</span> <span class="kt"><a href="../Classes/UART/BufferLength.html">BufferLength</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">small</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">open</span><span class="p">(</span><span class="n">_</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">FileDescriptor</span></code></pre>
 
                         </div>
                       </div>
@@ -225,72 +270,12 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>id</em>
+                                <em>path</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p><strong>REQUIRED</strong> The name of the UART interface.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>baudRate</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><strong>OPTIONAL</strong>The communication speed. The default baud rate is 115200.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>dataBits</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><strong>OPTIONAL</strong>The length of the data being transmitted.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>parity</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><strong>OPTIONAL</strong>The parity bit to confirm the accuracy of the data transmission.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>stopBits</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><strong>OPTIONAL</strong>The bits reserved to stop the communication.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>readBufferLength</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><strong>OPTIONAL</strong>The length of the serial buffer to store the data.</p>
+                                  <p><strong>REQUIRED</strong> The location of the file to open.</p>
                                 </div>
                               </td>
                             </tr>
@@ -303,9 +288,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7SwiftIO4UARTC11setBaudrateyySiF"></a>
-                    <a name="//apple_ref/swift/Method/setBaudrate(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftIO4UARTC11setBaudrateyySiF">setBaudrate(_:<wbr>)</a>
+                    <a name="/s:7SwiftIO14FileDescriptorV6unlinkyySSFZ"></a>
+                    <a name="//apple_ref/swift/Method/unlink(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftIO14FileDescriptorV6unlinkyySSFZ">unlink(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -313,14 +298,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Set the baud rate for communication. It should be set ahead of time to ensure the same baud rate between two devices.</p>
+                        <p>Deletes the specified file or directory</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setBaudrate</span><span class="p">(</span><span class="n">_</span> <span class="nv">baudRate</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">unlink</span><span class="p">(</span><span class="n">_</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -331,12 +316,12 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>baudRate</em>
+                                <em>path</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The communication speed.</p>
+                                  <p><strong>REQUIRED</strong> The location of the file to open.</p>
                                 </div>
                               </td>
                             </tr>
@@ -349,9 +334,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7SwiftIO4UARTC11clearBufferyyF"></a>
-                    <a name="//apple_ref/swift/Method/clearBuffer()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftIO4UARTC11clearBufferyyF">clearBuffer()</a>
+                    <a name="/s:7SwiftIO14FileDescriptorV5closeyyF"></a>
+                    <a name="//apple_ref/swift/Method/close()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftIO14FileDescriptorV5closeyyF">close()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -359,14 +344,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Clear all bytes from the buffer to store the incoming data.</p>
+                        <p>Flushes the associated stream and closes the file.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">clearBuffer</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">close</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -376,9 +361,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7SwiftIO4UARTC19checkBufferReceivedSiyF"></a>
-                    <a name="//apple_ref/swift/Method/checkBufferReceived()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftIO4UARTC19checkBufferReceivedSiyF">checkBufferReceived()</a>
+                    <a name="/s:7SwiftIO14FileDescriptorV4tellSiyF"></a>
+                    <a name="//apple_ref/swift/Method/tell()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftIO14FileDescriptorV4tellSiyF">tell()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -386,20 +371,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Return the number of received data from the serial buffer.</p>
+                        <p>Get current file position.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">checkBufferReceived</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tell</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The number of bytes received in the buffer.</p>
+                        <p>Current position in file.</p>
                       </div>
                     </section>
                   </div>
@@ -407,9 +392,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7SwiftIO4UARTC5writeyys5UInt8VF"></a>
-                    <a name="//apple_ref/swift/Method/write(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftIO4UARTC5writeyys5UInt8VF">write(_:<wbr>)</a>
+                    <a name="/s:7SwiftIO14FileDescriptorV4read4intoSiSw_tF"></a>
+                    <a name="//apple_ref/swift/Method/read(into:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftIO14FileDescriptorV4read4intoSiSw_tF">read(into:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -417,15 +402,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Write a byte of data to the external device through the serial connection.</p>
+                        <p>Reads bytes at the current file offset into a buffer</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inline</span><span class="p">(</span><span class="n">__always</span><span class="p">)</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">byte</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">read</span><span class="p">(</span><span class="n">into</span> <span class="nv">buffer</span><span class="p">:</span> <span class="kt">UnsafeMutableRawBufferPointer</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -436,12 +420,12 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>byte</em>
+                                <em>buffer</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>One 8-bit binary data to be sent to the device.</p>
+                                  <p><strong>REQUIRED</strong> Te region of memory to read into.</p>
                                 </div>
                               </td>
                             </tr>
@@ -454,9 +438,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7SwiftIO4UARTC5writeyySays5UInt8VGF"></a>
-                    <a name="//apple_ref/swift/Method/write(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftIO4UARTC5writeyySays5UInt8VGF">write(_:<wbr>)</a>
+                    <a name="/s:7SwiftIO14FileDescriptorV4read18fromAbsoluteOffest4intoS2i_SwtF"></a>
+                    <a name="//apple_ref/swift/Method/read(fromAbsoluteOffest:into:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftIO14FileDescriptorV4read18fromAbsoluteOffest4intoS2i_SwtF">read(fromAbsoluteOffest:<wbr>into:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -464,15 +448,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Write a series of bytes to the external device through the serial connection.</p>
+                        <p>Reads bytes at the specified offset into a buffer.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inline</span><span class="p">(</span><span class="n">__always</span><span class="p">)</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">read</span><span class="p">(</span><span class="n">fromAbsoluteOffest</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">into</span> <span class="nv">buffer</span><span class="p">:</span> <span class="kt">UnsafeMutableRawBufferPointer</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -483,12 +466,24 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>data</em>
+                                <em>offset</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>A byte array to be sent to the device.</p>
+                                  <p><strong>REQUIRED</strong> The file offset where reading begins.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>buffer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><strong>REQUIRED</strong> Te region of memory to read into.</p>
                                 </div>
                               </td>
                             </tr>
@@ -501,9 +496,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7SwiftIO4UARTC5writeyySSF"></a>
-                    <a name="//apple_ref/swift/Method/write(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftIO4UARTC5writeyySSF">write(_:<wbr>)</a>
+                    <a name="/s:7SwiftIO14FileDescriptorV4seek6offset4fromS2i_AC10SeekOriginOtF"></a>
+                    <a name="//apple_ref/swift/Method/seek(offset:from:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftIO14FileDescriptorV4seek6offset4fromS2i_AC10SeekOriginOtF">seek(offset:<wbr>from:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -511,15 +506,118 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Write a string to the external device through the serial connection.</p>
+                        <p>Reposition the offset for the given file descriptor.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inline</span><span class="p">(</span><span class="n">__always</span><span class="p">)</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">seek</span><span class="p">(</span><span class="nv">offset</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">from</span> <span class="nv">whence</span><span class="p">:</span> <span class="kt"><a href="../Structs/FileDescriptor/SeekOrigin.html">SeekOrigin</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">start</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>offset</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><strong>REQUIRED</strong> The new offset for the file descriptor.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>whence</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><strong>OPTIONAL</strong> The origin of the new offset.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7SwiftIO14FileDescriptorV5writeyySWF"></a>
+                    <a name="//apple_ref/swift/Method/write(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftIO14FileDescriptorV5writeyySWF">write(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Writes the contents of a buffer at the current file offset.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">buffer</span><span class="p">:</span> <span class="kt">UnsafeRawBufferPointer</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>buffer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><strong>REQUIRED</strong> The region of memory that contains the data being written.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7SwiftIO14FileDescriptorV5writeyySSF"></a>
+                    <a name="//apple_ref/swift/Method/write(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftIO14FileDescriptorV5writeyySSF">write(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Writes the contents of a string at the current file offset.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -535,7 +633,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>A string to be sent to the device.</p>
+                                  <p><strong>REQUIRED</strong> The string being written.</p>
                                 </div>
                               </td>
                             </tr>
@@ -548,9 +646,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7SwiftIO4UARTC8readByte7timeouts5UInt8VSi_tF"></a>
-                    <a name="//apple_ref/swift/Method/readByte(timeout:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftIO4UARTC8readByte7timeouts5UInt8VSi_tF">readByte(timeout:<wbr>)</a>
+                    <a name="/s:7SwiftIO14FileDescriptorV5write16toAbsoluteOffset_ySi_SWtF"></a>
+                    <a name="//apple_ref/swift/Method/write(toAbsoluteOffset:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftIO14FileDescriptorV5write16toAbsoluteOffset_ySi_SWtF">write(toAbsoluteOffset:<wbr>_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -558,19 +656,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Read a byte of data receiving from the external device. The maximum time for data reception is decided by the timeout value. If the data is received before the time set, the read process will end up automatically. </p>
-
-<p>-1 is set to wait until receiving the required data. 
-0 is set to end up the read immediately no matter whether the data is received or not. 
-A value greater than 0 is set to wait for a certain period (in milliseconds) and then end up the read.</p>
+                        <p>Writes the contents of a buffer at the specified offset.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inline</span><span class="p">(</span><span class="n">__always</span><span class="p">)</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">readByte</span><span class="p">(</span><span class="nv">timeout</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UInt8</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">toAbsoluteOffset</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">_</span> <span class="nv">buffer</span><span class="p">:</span> <span class="kt">UnsafeRawBufferPointer</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -581,98 +674,39 @@ A value greater than 0 is set to wait for a certain period (in milliseconds) and
                             <tr>
                               <td>
                                 <code>
-                                <em>timeout</em>
+                                <em>offset</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The max time for data reception.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>One 8-bit binary data read from the device.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7SwiftIO4UARTC4read5count7timeoutSays5UInt8VGSi_SitF"></a>
-                    <a name="//apple_ref/swift/Method/read(count:timeout:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftIO4UARTC4read5count7timeoutSays5UInt8VGSi_SitF">read(count:<wbr>timeout:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Read a series of bytes receiving from the external device.The maximum time for data reception is decided by the timeout value. If the data is received before the time set, the read process will end up automatically. </p>
-
-<p>-1 is set to wait until receiving the required data. 
-0 is set to end up the read immediately no matter whether the data is received or not. 
-A value greater than 0 is set to wait for a certain period (in milliseconds) and then end up the read.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inline</span><span class="p">(</span><span class="n">__always</span><span class="p">)</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">read</span><span class="p">(</span><span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">timeout</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>timeout</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The max time for data reception.</p>
+                                  <p><strong>REQUIRED</strong> The file offset where writing begins.</p>
                                 </div>
                               </td>
                             </tr>
                             <tr>
                               <td>
                                 <code>
-                                <em>count</em>
+                                <em>buffer</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The number of bytes to read.</p>
+                                  <p><strong>REQUIRED</strong> Te region of memory that contains the data being written.</p>
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>A byte array read from the device.</p>
-                      </div>
                     </section>
                   </div>
                 </li>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7SwiftIO4UARTC6ParityO"></a>
-                    <a name="//apple_ref/swift/Enum/Parity" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftIO4UARTC6ParityO">Parity</a>
+                    <a name="/s:7SwiftIO14FileDescriptorV4syncyyF"></a>
+                    <a name="//apple_ref/swift/Method/sync()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftIO14FileDescriptorV4syncyyF">sync()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -680,99 +714,19 @@ A value greater than 0 is set to wait for a certain period (in milliseconds) and
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The parity bit is used to ensure the data transmission according to the number of logical-high bits.</p>
+                        <p>Flushes any cached write of an open file.</p>
+<div class="aside aside-attention">
+    <p class="aside-title">Attention</p>
+    This method  can be used to flush the cache of an open file. This can be called to ensure data gets written to the storage media immediately. This may be done to avoid data loss if power is removed unexpectedly. Note that closing a file will cause caches to be flushed correctly so it need not be called if the file is being closed.
 
-                        <a href="../Classes/UART/Parity.html" class="slightly-smaller">See more</a>
+</div>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Parity</span> <span class="p">:</span> <span class="kt">UInt8</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7SwiftIO4UARTC8StopBitsO"></a>
-                    <a name="//apple_ref/swift/Enum/StopBits" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftIO4UARTC8StopBitsO">StopBits</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>One or two stops bits are reserved to end the communication.</p>
-
-                        <a href="../Classes/UART/StopBits.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">StopBits</span> <span class="p">:</span> <span class="kt">UInt8</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7SwiftIO4UARTC8DataBitsO"></a>
-                    <a name="//apple_ref/swift/Enum/DataBits" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftIO4UARTC8DataBitsO">DataBits</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>This indicates the length of the data being transmitted.</p>
-
-                        <a href="../Classes/UART/DataBits.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">DataBits</span> <span class="p">:</span> <span class="kt">UInt8</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7SwiftIO4UARTC12BufferLengthO"></a>
-                    <a name="//apple_ref/swift/Enum/BufferLength" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7SwiftIO4UARTC12BufferLengthO">BufferLength</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>This indicates the storage size of the serial buffer.</p>
-
-                        <a href="../Classes/UART/BufferLength.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">BufferLength</span> <span class="p">:</span> <span class="kt">Int32</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sync</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
