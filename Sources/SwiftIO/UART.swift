@@ -185,7 +185,7 @@ public final class UART {
 
      */
     @inline(__always)
-    public func readByte(timeout: Int = Int(SWIFT_FOREVER)) -> UInt8 {
+    public func readByte(timeout: Int = Int(SWIFT_FOREVER)) -> UInt8? {
         var byte = UInt8()
         swifthal_uart_char_get(obj, &byte, Int32(timeout))
         return byte
