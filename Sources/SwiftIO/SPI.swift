@@ -88,18 +88,18 @@ import CSwiftIO
      - Returns: One 8-bit binary number receiving from the slave device.
      */
     @inline(__always)
-    public func readByte() -> UInt8 {
-        var data: [UInt8] = [0]
+    public func readByte() -> UInt8? {
+        var byte: UInt8 = 0
 
         csEnable()
-        let ret = swifthal_spi_read(obj, &data, 1)
+        let ret = swifthal_spi_read(obj, &byte, 1)
         csDisable()
        
         if ret == 0 {
-            return data[0]
+            return byte
         } else {
             print("SPI\(id) readByte error!")
-            return 0
+            return nil
         }
     }
 
@@ -145,17 +145,17 @@ import CSwiftIO
      */
     @inline(__always)
     public func write(_ data: [UInt8], count: Int? = nil) {
-        let ret: Int32
+        let ret, length: Int32
 
-        if let length = count {
-            csEnable()
-            ret = swifthal_spi_write(obj, data, Int32(length))
-            csDisable()
+        if let count = count {
+            length = Int32(min(count, data.count))
         } else {
-            csEnable()
-            ret = swifthal_spi_write(obj, data, Int32(data.count))
-            csDisable()
+            length = Int32(data.count)
         }
+
+        csEnable()
+        ret = swifthal_spi_write(obj, data, length)
+        csDisable()
 
         if ret != 0 {
             print("SPI\(id) write error!")
