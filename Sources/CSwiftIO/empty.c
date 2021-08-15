@@ -73,15 +73,22 @@ int swifthal_i2c_write_read(void *i2c, unsigned char addr, const void *write_buf
 int swifthal_i2c_dev_number_get(void){}
 
 //i2s
-//void *swifthal_i2s_open(int id, const swift_i2s_cfg_t *tx_cfg, const swift_i2s_cfg_t *rx_cfg){}
 void *swifthal_i2s_open(int id){}
+void *swifthal_i2s_handle_get(int id){}
+int swifthal_i2s_id_get(void *i2s){}
 int swifthal_i2s_close(void *i2s){}
+int swifthal_i2s_tx_config_set(void *i2s, const swift_i2s_cfg_t *cfg){}
+int swifthal_i2s_tx_config_get(void *i2s, swift_i2s_cfg_t *cfg){}
+int swifthal_i2s_tx_status_set(void *i2s, int enable){}
+int swifthal_i2s_tx_status_get(void *i2s){}
 int swifthal_i2s_tx_available_get(void *i2s){}
-int swifthal_i2s_rx_available_get(void *i2s){}
-int swifthal_i2s_config_set(void *i2s, const swift_i2s_cfg_t *tx_cfg, const swift_i2s_cfg_t *rx_cfg){}
-int swifthal_i2s_config_get(void *i2s, swift_i2s_cfg_t *tx_cfg, swift_i2s_cfg_t *rx_cfg){}
 int swifthal_i2s_write(void *i2s, const unsigned char *buf, int length, int timeout){}
 int swifthal_i2s_write_terminate(void *i2s){}
+int swifthal_i2s_rx_config_set(void *i2s, const swift_i2s_cfg_t *cfg){}
+int swifthal_i2s_rx_config_get(void *i2s, swift_i2s_cfg_t *cfg){}
+int swifthal_i2s_rx_status_set(void *i2s, int enable){}
+int swifthal_i2s_rx_status_get(void *i2s){}
+int swifthal_i2s_rx_available_get(void *i2s){}
 int swifthal_i2s_read(void *i2s, unsigned char *buf, int length, int timeout){}
 int swifthal_i2s_dev_number_get(void){}
 
