@@ -142,7 +142,7 @@ import CSwiftIO
  BTW, you can find more drivers for different devices in [MadDrivers](https://github.com/madmachineio/MadDrivers).
 
  */
-public final class I2C: II2C{
+public class I2C: II2C{
     private let id: Int32
     public let obj: UnsafeMutableRawPointer
 
