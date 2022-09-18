@@ -142,12 +142,12 @@ import CSwiftIO
  BTW, you can find more drivers for different devices in [MadDrivers](https://github.com/madmachineio/MadDrivers).
 
  */
- public final class I2C {
+public final class I2C: II2C{
     private let id: Int32
     public let obj: UnsafeMutableRawPointer
 
     private var speedRawValue: UInt32
-    private var speed: Speed {
+    private var speed: I2CSpeed {
         willSet {
             speedRawValue = I2C.getSpeedRawValue(newValue)
         }
@@ -167,7 +167,7 @@ import CSwiftIO
 
      */
     public init(_ idName: IdName,
-                speed: Speed = .standard) {
+                speed: I2CSpeed = .standard) {
         self.id = idName.value
         self.speed = speed
         self.speedRawValue = I2C.getSpeedRawValue(speed)
@@ -190,7 +190,7 @@ import CSwiftIO
      
      - Returns: The current speed: `.standard` (100 Kbps), `.fast` (400 Kbps) or `.fastPlus` (1Mbps).
      */
-    public func getSpeed() -> Speed {
+    public func getSpeed() -> I2CSpeed {
         return speed
     }
 
@@ -199,7 +199,7 @@ import CSwiftIO
      - Parameter speed: The clock speed for data transmission:
      `.standard` (100 Kbps), `.fast` (400 Kbps) or `.fastPlus` (1Mbps).
      */
-    public func setSpeed(_ speed: Speed) -> Result<(), Errno> {
+    public func setSpeed(_ speed: I2CSpeed) -> Result<(), Errno> {
         let oldSpeed = self.speed
         self.speed = speed
 
@@ -428,20 +428,8 @@ import CSwiftIO
 }
 
 extension I2C {
-    /**
-     The clock speed settings used to synchronize the data transmission between
-     devices.
-     */
-    public enum Speed {
-        /// 100 Kbps
-        case standard
-        /// 400 Kbps
-        case fast
-        /// 1 Mbps
-        case fastPlus
-    }
 
-    private static func getSpeedRawValue(_ speed: Speed) -> UInt32 {
+    private static func getSpeedRawValue(_ speed: I2CSpeed) -> UInt32 {
         switch speed {
             case .standard:
             return UInt32(SWIFT_I2C_SPEED_STANDARD)
